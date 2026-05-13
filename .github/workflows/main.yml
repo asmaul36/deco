@@ -1,8 +1,10 @@
-# Deploy static site to GitHub Pages (no configure-pages step — avoids 404
-# before the Pages site exists; deploy-pages creates the deployment).
+# Static site → GitHub Pages.
 #
-# First run: repo → Settings → Pages → Build and deployment → Source:
-# "GitHub Actions", then save. Re-run the workflow if the first deploy fails.
+# REQUIRED ONCE (or deploy-pages returns HTTP 404 "Failed to create deployment"):
+#   https://github.com/<owner>/<repo>/settings/pages
+#   Build and deployment → Source → pick "GitHub Actions" → Save.
+# If Source is "Deploy from a branch" or unset, Actions cannot deploy.
+# After saving, wait a few seconds and re-run this workflow.
 name: Deploy Pages
 
 on:
