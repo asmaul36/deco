@@ -1,5 +1,8 @@
-# Build and deploy static site to GitHub Pages.
-# Repo settings → Pages → Build and deployment → Source: GitHub Actions
+# Deploy static site to GitHub Pages (no configure-pages step — avoids 404
+# before the Pages site exists; deploy-pages creates the deployment).
+#
+# First run: repo → Settings → Pages → Build and deployment → Source:
+# "GitHub Actions", then save. Re-run the workflow if the first deploy fails.
 name: Deploy Pages
 
 on:
@@ -26,14 +29,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
